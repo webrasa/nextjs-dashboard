@@ -106,3 +106,26 @@ Learn more about how navigation works: https://nextjs.org/docs/app/building-your
 usePathname() - https://nextjs.org/docs/app/api-reference/functions/use-pathname
 
 ## Since usePathname() is a hook, you'll need to turn nav-links.tsx into a Client Component. Add React's "use client" directive to the top of the file, then import usePathname() from next/navigation:
+
+# Chapter 7 Fetching Data
+
+Learn about some approaches to fetching data: APIs, ORMs, SQL, etc.
+
+How Server Components can help you access back-end resources more securely.
+
+What network waterfalls are.
+
+How to implement parallel data fetching using a JavaScript Pattern.
+
+#### API Layer
+In Next.js, you can create API endpoints using Route Handlers. https://nextjs.org/docs/app/building-your-application/routing/route-handlers
+
+Database queries
+When you're creating a full-stack application, you'll also need to write logic to interact with your database. For relational databases like Postgres, you can do this with SQL, or an ORM like Prisma.
+
+### Using Server Components to fetch data
+https://nextjs.org/learn/dashboard-app/fetching-data#using-server-components-to-fetch-data
+
+### What are request waterfalls?
+https://nextjs.org/learn/dashboard-app/fetching-data#what-are-request-waterfalls
+
