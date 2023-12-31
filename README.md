@@ -76,4 +76,33 @@ Root layout: https://nextjs.org/docs/app/building-your-application/routing/pages
 
 Since the new layout you've just created (/app/dashboard/layout.tsx) is unique to the dashboard pages, you don't need to add any UI to the root layout above.
 
+# Chapter 5. Navigating Between Pages
 
+How to use the next/link component.
+
+How to show an active link with the usePathname() hook.
+
+How navigation works in Next.js.
+
+Why optimize navigation?
+https://nextjs.org/learn/dashboard-app/navigating-between-pages#why-optimize-navigation
+
+Full page refresh on each page navigation!
+
+The <Link> component
+In Next.js, you can use the <Link /> Component to link between pages in your application. <Link> allows you to do client-side navigation with JavaScript.
+client-side navigation: https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#how-routing-and-navigation-works
+
+### Automatic code-splitting and prefetching
+To improve the navigation experience, Next.js automatically code splits your application by route segments. This is different from a traditional React SPA, where the browser loads all your application code on initial load.
+
+Splitting code by routes means that pages become isolated. If a certain page throws an error, the rest of the application will still work.
+
+Futhermore, in production, whenever <Link> components appear in the browser's viewport, Next.js automatically prefetches the code for the linked route in the background. By the time the user clicks the link, the code for the destination page will already be loaded in the background, and this is what makes the page transition near-instant!
+
+Learn more about how navigation works: https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating#how-routing-and-navigation-works
+
+### Pattern: Showing active links
+usePathname() - https://nextjs.org/docs/app/api-reference/functions/use-pathname
+
+## Since usePathname() is a hook, you'll need to turn nav-links.tsx into a Client Component. Add React's "use client" directive to the top of the file, then import usePathname() from next/navigation:
