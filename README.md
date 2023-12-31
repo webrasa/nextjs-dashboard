@@ -144,11 +144,22 @@ Different approaches to make your dashboard dynamic.
 Simulate a slow data fetch to see what happens.
 
 ## What is Static Rendering?
+With static rendering, data fetching and rendering happens on the server at build time (when you deploy) or during revalidation.
+Faster Websites
+Reduced Server Load
+SEO
+### Static rendering is useful for UI with no data or data that is shared across users, such as a static blog post or a product page.
 
 ## What is Dynamic Rendering?
+With dynamic rendering, content is rendered on the server for each user at request time (when the user visits the page). There are a couple of benefits of dynamic rendering:
+
+Real-Time Data
+User-Specific Content
+Request Time Information - Dynamic rendering allows you to access information that can only be known at request time, such as cookies or the URL search parameters.
 
 ## Making the dashboard dynamic
 https://nextjs.org/learn/dashboard-app/static-and-dynamic-rendering#making-the-dashboard-dynamic
+Note: unstable_noStore is an experimental API and may change in the future. If you prefer to use a stable API in your own projects, you can also use the Segment Config Option export const dynamic = "force-dynamic".
 
 ## Simulating a Slow Data Fetch
 Here, you've added an artificial 3-second delay to simulate a slow data fetch. The result is that now your whole page is blocked while the data is being fetched.
@@ -157,3 +168,4 @@ Which brings us to a common challenge developers have to solve:
 
 With dynamic rendering, your application is only as fast as your slowest data fetch.
 
+# Chapter 9 Streaming
