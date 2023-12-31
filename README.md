@@ -47,3 +47,33 @@ How to add custom fonts with next/font.
 How to add images with next/image.
 
 How fonts and images are optimized in Next.js.
+
+# Chapter 4 Creating Layouts and Pages
+
+Create the dashboard routes using file-system routing.
+
+Understand the role of folders and files when creating new route segments.
+
+Create a nested layout that can be shared between multiple dashboard pages.
+
+Understand what colocation, partial rendering, and the root layout are.
+
+Creating the dashboard page
+
+Creating the dashboard layout
+https://nextjs.org/learn/dashboard-app/creating-layouts-and-pages#creating-the-dashboard-layout
+
+One benefit of using layouts in Next.js is that on navigation, only the page components update while the layout won't re-render. This is called partial rendering:
+
+Root layout
+In Chapter 3, you imported the Inter font into another layout: /app/layout.tsx.
+
+This is called a root layout and is required. Any UI you add to the root layout will be shared across all pages in your application. You can use the root layout to modify your <html> and <body> tags, and add metadata (you'll learn more about metadata in a later chapter).
+
+Since the new layout you've just created (/app/dashboard/layout.tsx) is unique to the dashboard pages, you don't need to add any UI to the root layout above.
+
+Root layout: https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required
+
+Since the new layout you've just created (/app/dashboard/layout.tsx) is unique to the dashboard pages, you don't need to add any UI to the root layout above.
+
+
