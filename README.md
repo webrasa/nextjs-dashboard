@@ -129,3 +129,31 @@ https://nextjs.org/learn/dashboard-app/fetching-data#using-server-components-to-
 ### What are request waterfalls?
 https://nextjs.org/learn/dashboard-app/fetching-data#what-are-request-waterfalls
 
+Current limitations
+1. The data requests are creating an unintentional waterfall.
+2. The dashboard is static, so any data updates will not be reflected on your application.
+
+# Chapter 8 Static and Dynamic Rendering
+
+What static rendering is and how it can improve your application's performance.
+
+What dynamic rendering is and when to use it.
+
+Different approaches to make your dashboard dynamic.
+
+Simulate a slow data fetch to see what happens.
+
+## What is Static Rendering?
+
+## What is Dynamic Rendering?
+
+## Making the dashboard dynamic
+https://nextjs.org/learn/dashboard-app/static-and-dynamic-rendering#making-the-dashboard-dynamic
+
+## Simulating a Slow Data Fetch
+Here, you've added an artificial 3-second delay to simulate a slow data fetch. The result is that now your whole page is blocked while the data is being fetched.
+
+Which brings us to a common challenge developers have to solve:
+
+With dynamic rendering, your application is only as fast as your slowest data fetch.
+
