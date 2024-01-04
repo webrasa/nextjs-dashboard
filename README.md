@@ -294,3 +294,109 @@ npm i use-debounce or write your own implementation
 ## Adding pagination
 https://nextjs.org/learn/dashboard-app/adding-search-and-pagination#adding-pagination
 
+# Chapter 12 Mutating Data
+https://nextjs.org/learn/dashboard-app/mutating-data
+
+What React Server Actions are and how to use them to mutate data.
+
+How to work with forms and Server Components.
+
+Best practices for working with the native formData object, including type validation.
+
+How to revalidate the client cache using the revalidatePath API.
+
+How to create dynamic route segments with specific IDs.
+
+How to use the React’s useFormStatus hook for optimistic updates.
+
+## Creating an invoice
+Here are the steps you'll take to create a new invoice:
+
+1. Create a form to capture the user's input.
+2. Create a Server Action and invoke it from the form.
+3. Inside your Server Action, extract the data from the formData object.
+4. Validate and prepare the data to be inserted into your database.
+5. Insert the data and handle any errors.
+6. Revalidate the cache and redirect the user back to invoices page.
+
+1. Create a new route and form
+To start, inside the /invoices folder, add a new route segment called /create with a page.tsx
+
+Your page is a Server Component that fetches customers and passes it to the <Form> component. To save time, we've already created the <Form> component for you.
+
+2. Create a Server Action
+Great, now let's create a Server Action that is going to be called when the form is submitted.
+
+Navigate to your lib directory and create a new file named actions.ts. At the top of this file, add the React use server directive.
+
+By adding the 'use server', you mark all the exported functions within the file as server functions. These server functions can then be imported into Client and Server components, making them extremely versatile.
+
+You can also write Server Actions directly inside Server Components by adding "use server" inside the action. But for this course, we'll keep them all organized in a separate file.
+
+Then, in your <Form> component, import the createInvoice from your actions.ts file. Add a action attribute to the <form> element, and call the createInvoice action.
+
+3. Extract the data from formData
+Back in your actions.ts file, you'll need to extract the values of formData, there are a couple of methods you can use. For this example, let's use the .get(name) method.
+
+Tip: If you're working with forms that have many fields, you may want to consider using the entries() method with JavaScript's Object.fromEntries(). For example:
+
+const rawFormData = Object.fromEntries(formData.entries())
+
+4. Validate and prepare the data
+Before sending the form data to your database, you want to ensure it's in the correct format and with the correct types
+
+5. Inserting the data into your database
+Now that you have all the values you need for your database, you can create an SQL query to insert the new invoice into your database and pass in the variables.
+
+6. Revalidate and redirect
+Next.js has a Client-side Router Cache that stores the route segments in the user's browser for a time. Along with prefetching, this cache ensures that users can quickly navigate between routes while reducing the number of requests made to the server.
+
+Since you're updating the data displayed in the invoices route, you want to clear this cache and trigger a new request to the server. You can do this with the revalidatePath function from Next.js
+``
+evalidatePath('/dashboard/invoices');
+``
+
+Once the database has been updated, the /dashboard/invoices path will be revalidated, and fresh data will be fetched from the server.
+
+At this point, you also want to redirect the user back to the /dashboard/invoices page. You can do this with the redirect function from Next.js.
+
+## Updating an invoice
+The updating invoice form is similar to the create an invoice form, except you'll need to pass the invoice id to update the record in your database. Let's see how you can get and pass the invoice id.
+
+These are the steps you'll take to update an invoice:
+
+1. Create a new dynamic route segment with the invoice id.
+2. Read the invoice id from the page params.
+3. Fetch the specific invoice from your database.
+4. Pre-populate the form with the invoice data.
+5. Update the invoice data in your database.
+
+1. Create a Dynamic Route Segment with the invoice id
+Next.js allows you to create Dynamic Route Segments when you don't know the exact segment name and want to create routes based on data. This could be blog post titles, product pages, etc.
+
+2. Read the invoice id from page params
+
+3. Fetch the specific invoice
+Then:
+Import a new function called fetchInvoiceById and pass the id as an argument.
+Import fetchCustomers to fetch the customer names for the dropdown.
+
+4. Pass the id to the Server Action
+Lastly, you want to pass the id to the Server Action so you can update the right record in your database. You cannot pass the id as an argument like so:
+// Passing an id as argument won't work
+<form action={updateInvoice(id)}>
+
+Instead, you can pass id to the Server Action using JS bind. This will ensure that any values passed to the Server Action are encoded.
+
+Similarly to the createInvoice action, here you are:
+
+1. Extracting the data from formData.
+2. Validating the types with Zod.
+3. Converting the amount to cents.
+4. Passing the variables to your SQL query.
+5. Calling revalidatePath to clear the client cache and make a new server request.
+6. Calling redirect to redirect the user to the invoice's page.
+
+## Deleting an invoice
+To delete an invoice using a Server Action, wrap the delete button in a <form> element and pass the id to the Server Action using bind
+
